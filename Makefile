@@ -74,10 +74,14 @@ default: .help-message
 	@update-alternatives --display python
 
 .install-golang:
+ifeq ($(CHECK_GOLANG),)
 	@wget https://golang.org/dl/go$(GOLANG_VERSION).linux-amd64.tar.gz -O golang.tar.gz
 	sudo tar -C /usr/local -xzf golang.tar.gz 2>/dev/null
 	sudo [ ! -f /usr/bin/go ] && ln -s /usr/local/go/bin/go* /usr/bin/ || true
 	@rm -f golang.tar.gz
+else
+	@echo "-> golang already in the expected version! Skipping..."
+endif
 
 .install-pre-commit:
 	@pip install pre-commit
@@ -86,11 +90,14 @@ default: .help-message
 	@pip install -U Commitizen
 
 .install-git-chlog:
+ifeq ($(CHECK_GITCHGLOG),)
 	@wget https://github.com/git-chglog/git-chglog/releases/download/v$(GIT_CHLOG_VERSION)/git-chglog_$(GIT_CHLOG_VERSION)_linux_amd64.tar.gz -O git-chglog.tar.gz
 	@tar zxvf git-chglog.tar.gz git-chglog
 	sudo mv git-chglog /usr/bin/
 	@rm git-chglog.tar.gz
-
+else
+	@echo "-> git-chglog already in the expected version! Skipping..."
+endif
 
 # Initialization commands
 .repo-init:
