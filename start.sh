@@ -2,6 +2,7 @@
 SCRIPT_PATH="$( cd "$(dirname "$0")" >/dev/null || exit ; pwd -P )"
 REPO_PATH=$(dirname "$SCRIPT_PATH")
 REPO_METADATA_PATH="$REPO_PATH/.repo_metadata"
+MAKEFILES_PATH="Makefiles/"
 
 LEVEL1=("First Time Setup" "Reset config")
 
@@ -32,7 +33,7 @@ do
     "${LEVEL1[0]}")
         if [[ ! -f $REPO_METADATA_PATH"/.DONE" ]]
         then
-            REPOTYPES=( $(ls repo_*.mk | cut -d'_' -f2- | cut -d'.' -f1) )
+            REPOTYPES=( $(ls "$MAKEFILES_PATH"repo_*.mk | cut -d'_' -f2- | cut -d'.' -f1) )
             echo "Which type of repository will this be?"
             select repo_type in "${REPOTYPES[@]}"
             do

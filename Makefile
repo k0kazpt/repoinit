@@ -1,9 +1,15 @@
 # Default goal
 #.DEFAULT_GOAL := help
 
+# Repoinit install folder
+REPOINIT_INSTALL_FOLDER := repoinit/
 
 # Repository metadata folder
 REPO_METADATA := ../.repo_metadata/
+MKFILES_DIR := Makefiles/
+READMES_DIR := README/
+PRECOMMITS_DIR := pre-commit/
+
 
 
 # TODO: implement package manager detection
@@ -13,11 +19,11 @@ COREPKGSTOINSTALL := python3 python3-pip unzip rename
 
 
 # Requisites and versions
-include requisites.mk
+include $(MKFILES_DIR)requisites.mk
 
 
 # Include specific dependencies
-include repo_*.mk
+include $(MKFILES_DIR)repo_*.mk
 
 
 # FULL SETUP
@@ -33,7 +39,7 @@ else
 already-done:
 	@echo "!! First setup already done!"
 	@echo "-> To reset setup, please rerun"
-	@echo "-> ./first-setup/start.sh and"
+	@echo "-> ./$(REPOINIT_INSTALL_FOLDER)start.sh and"
 	@echo "-> choose the Reset config option!"
 	@echo ""
 endif
@@ -46,7 +52,7 @@ default: .help-message
 # Help message
 .help-message:
 	@echo "!! DO NOT run make directly, unless you know what you are doing!"
-	@echo "!! Run ./first-setup/start.sh instead!"
+	@echo "!! Run ./$(REPOINIT_INSTALL_FOLDER)start.sh instead!"
 	@echo ""
 
 # Reset config
@@ -54,7 +60,7 @@ default: .help-message
 	@echo "-> Resetting repository metadata:"
 	rm -f $(REPO_METADATA).DONE 2>/dev/null
 	rm -f $(REPO_METADATA).repo_* 2>/dev/null
-	@echo "-> To reconfigure, run ./first-setup/start.sh again!"
+	@echo "-> To reconfigure, run ./$(REPOINIT_INSTALL_FOLDER)start.sh again!"
 
 
 # CORE dependencies
@@ -88,7 +94,7 @@ default: .help-message
 
 # Initialization commands
 .repo-init:
-	@mv README_$(REPO_TYPE).md ../README.md
+	@mv $(READMES_DIR)README$(REPO_TYPE).md ../README.md
 	@pre-commit install
 	@pre-commit install --hook-type commit-msg
 	@rm -rf ../.chglog

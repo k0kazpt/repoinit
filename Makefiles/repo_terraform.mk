@@ -20,4 +20,4 @@
 	@rm -f ~/tflint-ruleset-azurerm_linux_amd64.zip
 
 .terraform-setup-pre-commit:
-	@cp .pre-commit-config.yaml.terraform ../.pre-commit-config.yaml
+	@cp $(PRECOMMITS_DIR)pre-commit-config.yaml.terraform ../.pre-commit-config.yaml

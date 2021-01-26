@@ -157,3 +157,6 @@ override.tf.json
 
 # ignore repo metadata
 .repo_metadata/
+
+# ignore repoinit folder
+repoinit/
