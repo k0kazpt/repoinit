@@ -3,16 +3,23 @@
 [![pre-commit badge][pre-commit-badge]][pre-commit] [![Conventional commits badge][conventional-commits-badge]][conventional-commits] [![Keep a Changelog v1.1.0 badge][keep-a-changelog-badge]][keep-a-changelog] [![MIT License Badge][license-badge]][license]
 
 # Overview
-The repository and it's dependencies can be automatically setup by running an interactive script, that will run a makefile according to the interactive choices made.
-
+This repository contains setup scripts and templates to initialize different kinds of git repositories. by running an interactive script
 When this script finishes, the repository will be ready to use!
 
-# Getting started
+# Installation
+(sort of...)
 
-After git cloning this repo:
+1. In the root folder of the repository you want to setup, run:
+    ```bash
+    https://github.com/k0kazpt/repoinit.git
+    ```
+
+# Setting up your repository
+
+After the [Installation](#Installation):
 1. Run:
     ```bash
-    .first-setup/start.sh
+    repoinit/start.sh
     ```
 2. Choose option "1":
     ```
@@ -59,7 +66,7 @@ After git cloning this repo:
 ## To reset and reconfigure
 1. Run:
     ```bash
-    .first-setup/start.sh
+    repoinit/start.sh
     ```
 2. Choose option "2":
     ```
@@ -78,9 +85,9 @@ After git cloning this repo:
     -> Resetting repository metadata:
     rm -f ../.repo_metadata/.DONE 2>/dev/null
     rm -f ../.repo_metadata/.repo_* 2>/dev/null
-    -> To reconfigure, run ./first-setup/start.sh again!
+    -> To reconfigure, run ./repoinit/start.sh again!
     ```
-4. To reconfigure, follow the instructions in [Getting started](#Getting-started)
+4. To reconfigure, follow the instructions in [Setting up your repository](#Setting-up-your-repository)
 
 ***
 # References
