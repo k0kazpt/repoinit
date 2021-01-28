@@ -10,7 +10,7 @@ repos:
       - id: no-commit-to-branch
       - id: check-yaml
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: master
+    rev: v2.14.0
     hooks:
       - id: commitizen
         stages: [commit-msg]
