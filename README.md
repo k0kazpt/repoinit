@@ -13,6 +13,11 @@ When this script finishes, the repository will be ready to use!
     ```bash
     git clone https://github.com/k0kazpt/repoinit.git
     ```
+2. To "uninstall" (meaning, removing from the root repository tree) simply run:
+    ```bash
+    rm -rf repoinit
+    ```
+    If you wish to "re-install", re-run step 1. above.
 
 # Setting up your repository
 
