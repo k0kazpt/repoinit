@@ -11,7 +11,7 @@ When this script finishes, the repository will be ready to use!
 
 1. In the root folder of the repository you want to setup, run:
     ```bash
-    https://github.com/k0kazpt/repoinit.git
+    git clone https://github.com/k0kazpt/repoinit.git
     ```
 
 # Setting up your repository
