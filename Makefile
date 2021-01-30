@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 # Default goal
 #.DEFAULT_GOAL := help
 
@@ -101,13 +102,11 @@ endif
 
 # Initialization commands
 .repo-init:
-	@mv $(READMES_DIR)README$(REPO_TYPE).md ../README.md
-	@pre-commit install
-	@pre-commit install --hook-type commit-msg
-	@rm -rf ../.chglog
-	@git-chglog -init
-	@mv .chglog ../
-
+	@cp $(READMES_DIR)README$(REPO_TYPE).md ../README.md
+	@pushd ../ && \
+	pre-commit install && \
+	pre-commit install --hook-type commit-msg && \
+	git-chglog -init
 
 # Finish and cleanup
 .done:
