@@ -1,9 +1,11 @@
 # Required/supported versions
 TERRAFORM_DOCS_VERSION := "0.10.1"
-TFLINT_AZURE_RULES_VERSION := "0.7.0"
+TFLINT_VERSION := "0.24.0"
+TFLINT_AZURE_RULES_VERSION := "0.8.0"
 
 # Check variables
 CHECK_TERRAFORM_DOCS := $(shell terraform-docs --version | grep $(TERRAFORM_DOCS_VERSION) -o)
+CHECK_TFLINT := $(shell tflint --version | grep TFLint | grep $(TFLINT_VERSION) -o)
 CHECK_TFLINT_AZURE_RULES := $(shell tflint --version | grep azurerm | grep $(TFLINT_AZURE_RULES_VERSION) -o)
 
 .terraform: .terraform-install .terraform-install-tflint .terraform-install-terraform-docs .terraform-install-tflint-azure-rules .terraform-setup-pre-commit
@@ -12,7 +14,11 @@ CHECK_TFLINT_AZURE_RULES := $(shell tflint --version | grep azurerm | grep $(TFL
 	@sudo apt-get install -y terraform
 
 .terraform-install-tflint:
-	@curl -L "$$(curl -Ls https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" -o tflint.zip && unzip tflint.zip && rm tflint.zip && sudo mv tflint /usr/bin/
+ifeq ($(CHECK_TFLINT),)
+	@wget https://github.com/terraform-linters/tflint/releases/download/v$(TFLINT_VERSION)/tflint_linux_amd64.zip -O tflint.zip && unzip tflint.zip && rm tflint.zip && sudo mv tflint /usr/bin/
+else
+	@echo "-> tflint already in the expected version! Skipping..."
+endif
 
 .terraform-install-terraform-docs:
 ifeq ($(CHECK_TERRAFORM_DOCS),)
