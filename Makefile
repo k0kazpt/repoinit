@@ -16,7 +16,7 @@ PRECOMMITS_DIR := pre-commit/
 # TODO: implement package manager detection
 PKGMANINST := apt-get install -y
 PKGMANUPD := apt-get update
-COREPKGSTOINSTALL := python3 python3-pip unzip rename
+COREPKGSTOINSTALL := python3 python3-pip unzip linuxbrew-wrapper
 
 
 # Requisites and versions
