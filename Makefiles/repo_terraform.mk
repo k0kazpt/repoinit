@@ -1,7 +1,7 @@
 # Required/supported versions
-TERRAFORM_DOCS_VERSION := "0.11.2"
-TFLINT_VERSION := "0.24.0"
-TFLINT_AZURE_RULES_VERSION := "0.8.1"
+TERRAFORM_DOCS_VERSION := "0.12.1"
+TFLINT_VERSION := "0.26.0"
+TFLINT_AZURE_RULES_VERSION := "0.9.0"
 
 # Check variables
 CHECK_TERRAFORM_DOCS := $(shell terraform-docs --version | grep $(TERRAFORM_DOCS_VERSION) -o)
